@@ -57,90 +57,20 @@
   </div>
   <form action="{{ url_for('predict')}}" method="post">
   <div class="container formcon" id="formkiid">
-    
-  
-    <div class="col-md-6">
-      <label for="Gender"  class="form-label">Gender</label>
-      <select id="Gender" name="Gender" class="form-select">
-        <option selected>Male</option>
-        <option>Female</option>
-      </select>
-    </div>
-    <div class="col-md-6">
-      <label for="workexperience"   class="form-label">Work Experience</label>
-      <select id="workexperience" name="workexperience" class="form-select">
-        <option selected>Yes</option>
-        <option>No</option>
-      </select>
-    </div>
-
-    <div class="col-md-6">
-      <label for="ssp" class="form-label">Secondary school percentage</label>
-      <input type="number" name="ssp" min="0" max="100" class="form-control" id="ssp" required />
-    </div>
-    <div class="col-md-6">
-      <label for="ssb"  class="form-label">Secondary School Board</label>
-      <select id="ssb" name="ssb" class="form-select">
-        <option selected>Central</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-
-    <div class="col-md-4">
-      <label for="hsp" class="form-label">High School percentage</label>
-      <input type="number" name="number" min="0" max="100" class="form-control" id="hsp" required />
-    </div>
-    <div class="col-md-4">
-      <label for="hsb" class="form-label">High school board</label>
-      <select id="hsb" name="hsb" class="form-select">
-        <option selected>Central</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="col-md-4">
-      <label for="hss" class="form-label">High school Stream</label>
-      <select id="hss" name="hss" class="form-select">
-        <option selected>Science</option>
-        <option>Commerce</option>
-        <option>Arts</option>
-       </select>
-    </div>
-
-    
-
-    <div class="col-md-6">
-      <label for="degreep" class="form-label">Degree percentage</label>
-      <input type="number" name="number"  min="0" max="100" class="form-control" id="degreep" required />
-    </div>
-    <div class="col-md-6">
-      <label for="dgreet" class="form-label">Degree</label>
-      <select id="dgreet" name="dgreet" class="form-select">
-        <option selected>Sci&Tech</option>
-        <option>Comm&Mgmt</option>
-        <option>Others</option>
-      </select>
-    </div>
-
-    <div class="col-md-4">
-      <label for="mbap" class="form-label">MBA percentage</label>
-      <input type="number" name="mbap" min="0" max="100" class="form-control" id="mbap" required />
-    </div>
-    <div class="col-md-4">
-      <label for="mbat" class="form-label">Specialisation</label>
-      <select id="mbat" name="mbat" class="form-select">
-        <option selected>Mkt&HR</option>
-        <option>Mkt&Fin</option>
-      </select>
-    </div>
-    <div class="col-md-4">
-      <label for="etest_p" class="form-label">etest_p</label>
-      <input type="number" name="etest_p"  min="0" max="100" class="form-control" id="etest_p" required />
-    </div>
-    
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary">predict</button>
-    </div>
+        <input type="text" name="Gender" placeholder="Gender" required="required" />
+        <input type="text" name="ssp" placeholder="SSC Percantage" required="required" />
+		    <input type="text" name="hsp" placeholder="HSC Percantage" required="required" />
+        <input type="text" name="degreep" placeholder="Degree Percantage" required="required" />
+        <input type="text" name="workexperience" placeholder="Experience" required="required" />
+        <input type="text" name="etest_p" placeholder="etest_p" required="required" />
+        <input type="text" name="mbat" placeholder="Specialisation" required="required" />
+        <input type="text" name="mbap" placeholder="MBA Percantage" required="required" />
+        <input type="text" name="ssb" placeholder="SSC Board" required="required" />
+        <input type="text" name="hsb" placeholder="HSC Board" required="required" />
+        <input type="text" name="hss" placeholder="HSC Subject" required="required" />
+        <input type="text" name="dgreet" placeholder="Degree type" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+          
+   </div>
   </form>
-{{prediction_text}}
 </span>
