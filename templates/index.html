@@ -55,21 +55,20 @@
     </div>
 
   </div>
+  <form action="{{ url_for('predict')}}" method="post">
   <div class="container formcon" id="formkiid">
-    <form class="row g-3"><div class="col-md-4">
-      <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name" required />
-    </div>
-    <div class="col-md-4">
-      <label for="Gender" class="form-label">Gender</label>
-      <select id="Gender" class="form-select">
+    
+  
+    <div class="col-md-6">
+      <label for="Gender"  class="form-label">Gender</label>
+      <select id="Gender" name="Gender" class="form-select">
         <option selected>Male</option>
         <option>Female</option>
       </select>
     </div>
-    <div class="col-md-4">
-      <label for="workexperience" class="form-label">Work Experience</label>
-      <select id="workexperience" class="form-select">
+    <div class="col-md-6">
+      <label for="workexperience"   class="form-label">Work Experience</label>
+      <select id="workexperience" name="workexperience" class="form-select">
         <option selected>Yes</option>
         <option>No</option>
       </select>
@@ -77,11 +76,11 @@
 
     <div class="col-md-6">
       <label for="ssp" class="form-label">Secondary school percentage</label>
-      <input type="number" min="0" max="100" class="form-control" id="ssp" required />
+      <input type="number" name="ssp" min="0" max="100" class="form-control" id="ssp" required />
     </div>
     <div class="col-md-6">
-      <label for="ssb" class="form-label">Secondary School Board</label>
-      <select id="ssb" class="form-select">
+      <label for="ssb"  class="form-label">Secondary School Board</label>
+      <select id="ssb" name="ssb" class="form-select">
         <option selected>Central</option>
         <option>Other</option>
       </select>
@@ -90,18 +89,18 @@
 
     <div class="col-md-4">
       <label for="hsp" class="form-label">High School percentage</label>
-      <input type="number" min="0" max="100" class="form-control" id="hsp" required />
+      <input type="number" name="number" min="0" max="100" class="form-control" id="hsp" required />
     </div>
     <div class="col-md-4">
       <label for="hsb" class="form-label">High school board</label>
-      <select id="hsb" class="form-select">
+      <select id="hsb" name="hsb" class="form-select">
         <option selected>Central</option>
         <option>Other</option>
       </select>
     </div>
     <div class="col-md-4">
       <label for="hss" class="form-label">High school Stream</label>
-      <select id="hss" class="form-select">
+      <select id="hss" name="hss" class="form-select">
         <option selected>Science</option>
         <option>Commerce</option>
         <option>Arts</option>
@@ -112,11 +111,11 @@
 
     <div class="col-md-6">
       <label for="degreep" class="form-label">Degree percentage</label>
-      <input type="number" min="0" max="100" class="form-control" id="degreep" required />
+      <input type="number" name="number"  min="0" max="100" class="form-control" id="degreep" required />
     </div>
     <div class="col-md-6">
       <label for="dgreet" class="form-label">Degree</label>
-      <select id="dgreet" class="form-select">
+      <select id="dgreet" name="dgreet" class="form-select">
         <option selected>Sci&Tech</option>
         <option>Comm&Mgmt</option>
         <option>Others</option>
@@ -125,22 +124,23 @@
 
     <div class="col-md-4">
       <label for="mbap" class="form-label">MBA percentage</label>
-      <input type="number" min="0" max="100" class="form-control" id="mbap" required />
+      <input type="number" name="mbap" min="0" max="100" class="form-control" id="mbap" required />
     </div>
     <div class="col-md-4">
       <label for="mbat" class="form-label">Specialisation</label>
-      <select id="mbat" class="form-select">
+      <select id="mbat" name="mbat" class="form-select">
         <option selected>Mkt&HR</option>
         <option>Mkt&Fin</option>
       </select>
     </div>
     <div class="col-md-4">
       <label for="etest_p" class="form-label">etest_p</label>
-      <input type="number" min="0" max="100" class="form-control" id="etest_p" required />
+      <input type="number" name="etest_p"  min="0" max="100" class="form-control" id="etest_p" required />
     </div>
     
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary">predict</button>
     </div>
-
+  </form>
+{{prediction_text}}
 </span>

@@ -9,15 +9,15 @@ app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 model1 = pickle.load(open('model1.pkl','rb'))
 
-@app.route('/' , methods=['GET'])
+@app.route('/',methods=['GET'])
 def Home():
     return render_template('index.html')
 
 
 standard_to = StandardScaler()
-@app.route("/predict" , methods=['post'])
+@app.route("/predict", methods=['POST'])
 def predict():
-    if request.method == 'post':
+    if request.method == 'POST':
         ssp = float(request.form['ssp'])
         hsp = float(request.form['hsp'])
         etest_p = float(request.form['etest_p'])
