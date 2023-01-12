@@ -6,8 +6,7 @@ import numpy as np
 import sklearn
 from sklearn.preprocessing import StandardScaler
 app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
-model1 = pickle.load(open('model1.pkl','rb'))
+[model,model1] = pickle.load(open('model.pkl', 'rb'))
 
 @app.route('/',methods=['GET'])
 def Home():
@@ -73,7 +72,7 @@ def predict():
          return render_template('index.html',prediction_text="Sorry you are not placed")
         else:
          output="Person is Placed"
-         prediction1=model1.predict([[Gender,ssp,ssb,hsp,hsb,hss,degree_p,dgreet,workexperience,etest_p,mbat,mbap]])
+         prediction1=model.predict([[Gender,ssp,ssb,hsp,hsb,hss,degree_p,dgreet,workexperience,etest_p,mbat,mbap]])
          output1=round(prediction1[0],2)
          return render_template('index.html',prediction_text="You are placed with salary of {}".format(output1))
    
