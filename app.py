@@ -1,84 +1,103 @@
-from flask import Flask, render_template, request
-import jsonify
-import requests
-import pickle
 import numpy as np
-import sklearn
-from sklearn.preprocessing import StandardScaler
-app = Flask(__name__)
-[model,model1] = pickle.load(open('model_fin.pkl', 'rb'))
+from flask import Flask, request, jsonify, render_template
+import pickle
 
-@app.route('/',methods=['GET'])
-def Home():
+app = Flask(__name__)
+model = pickle.load(open('model_final.pkl', 'rb'))
+
+@app.route('/')
+def home():
     return render_template('index.html')
 
-
-standard_to = StandardScaler()
-@app.route("/predict", methods=['POST'])
+@app.route('/predict', methods=['post'])
 def predict():
-    if request.method == 'POST':
-        ssp = float(request.form['ssp'])
-        hsp = float(request.form['hsp'])
-        etest_p = float(request.form['etest_p'])
-        degree_p = float(request.form['degree_p'])
-        mbap = float(request.form['mbap'])
+    '''
+    For rendering results on HTML GUI
+    '''
     
-        Gender=request.form['Gender']
-        if(Gender=='Male'):
-                Gender=1        
-        else:
-                Gender=0
-            
-        workexperience=request.form['workexperience']
-        if(workexperience=='Yes'):
-            workexperience=1
-        else:
-            workexperience=0	
+    cols =['Gender','ssp', 'ssb', 'hsp', 'hsb', 'degreep', 'workexperience', 'etest_p', 'mbat', 'mbap', 'hss','dgreet']
+    cols2=['gender', 'ssc_p', 'ssc_b', 'hsc_p', 'hsc_b', 'degree_p', 'workex', 'etest_p', 'specialisation', 'mba_p', 'hsc_s_Arts', 'hsc_s_Commerce', 'hsc_s_Science', 'degree_t_Comm&Mgmt', 'degree_t_Others', 'degree_t_Sci&Tech']
 
-        mbat=request.form['mbat']
-        if(mbat=='Mkt&HR'):
-            mbat=1
-        else:
-            mbat=0
+    features=[]
+    for i in cols:
+        features.append(str(request.form.get(i)))
 
-        ssb=request.form['ssb']
-        if(ssb=='Central'):
-            ssb=1
-        else:
-            ssb=0	
+    print(features)
 
-        hsb=request.form['hsb']
-        if(hsb=='Central'):
-            hsb=1
-        else:
-            hsb=0
 
-        hss=request.form['hss']
-        if(hss=='Science'):
-            hss=1
-        else:
-            workexperience=0	
-            
-        dgreet=request.form['dgreet']
-        if(dgreet=='Sci&Tech'):
-            dgreet=1
-        else:
-            dgreet=0
-
-        prediction=model.predict([[Gender,ssp,ssb,hsp,hsb,hss,degree_p,dgreet,workexperience,etest_p,mbat,mbap]])
-        output=round(prediction[0],2)
-        if(output==0.0):
-         output="Person is not placed"
-         return render_template('index.html',prediction_text="Sorry you are not placed")
-        else:
-         output="Person is Placed"
-         prediction1=model.predict([[Gender,ssp,ssb,hsp,hsb,hss,degree_p,dgreet,workexperience,etest_p,mbat,mbap]])
-         output1=round(prediction1[0],2)
-         return render_template('index.html',prediction_text="You are placed with salary of {}".format(output1))
-   
+    if(features[0]=="Male"):
+        features[0]=1.0
     else:
-        return render_template('index.html')
+        features[0]=0.0
 
-if __name__=="__main__":
-    app.run(debug=True)
+    if(features[2]=="Other"):
+        features[2]=0.0
+    else:
+        features[2]=1.0
 
+    if(features[4]=="Central"):
+        features[4]=1.0
+    else:
+        features[4]=0.0
+
+    if(features[6]=="Yes"):
+        features[6]=1.0
+    else:
+        features[6]=0
+
+    if(features[8]=="Mkt&HR"):
+        features[8]=0.0
+    else:
+        features[8]=1.0
+
+    if(features[10]=="Arts"):
+        features.append('1')
+        features.append('0')
+        features.append('0')    
+    elif(features[10]=="Commerce"):
+        features.append('0')
+        features.append('1')
+        features.append('0')
+            
+    elif(features[10]=="Science"):
+        features.append('0')
+        features.append('0')
+        features.append('1')
+        
+    if(features[11]=="Comm&Mgmt"):
+        features.append('1')
+        features.append('0')
+        features.append('0')    
+    elif(features[11]=="Others"):
+        features.append('0')
+        features.append('1')
+        features.append('0')
+            
+    elif(features[11]=="Sci&Tech"):
+        features.append('0')
+        features.append('0')
+        features.append('1')
+        
+    givenIndex=10
+    features.pop(givenIndex)
+    features.pop(givenIndex)
+    
+    print(features)
+
+    features = [float(x) for x in features]
+
+    final_features = [np.array(features)]
+    prediction = model[0].predict(final_features)
+    prediction_2 = model[1].predict(final_features)
+    output = round(prediction[0])
+    if(output==0.0):
+        output="Person is not placed"
+    else:
+        output="Person is Placed"+" with salary :  "+ str(prediction_2[0])
+
+
+    return render_template('index.html', prediction_text=output)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',port=8080)
