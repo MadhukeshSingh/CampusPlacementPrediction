@@ -17,3 +17,23 @@
     padding-bottom: 50px;
     padding-left: 80px;
 }
+
+.footer
+{
+    display : flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px; 
+}
+
+.predictor
+{
+    display : flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;   
+}

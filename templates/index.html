@@ -30,7 +30,7 @@
 
 <span class="border border-light">
   <div class="container cards">
-    <div class="card" style="width: 30rem;">
+    <div class="card" style="width: 70rem;">
       <img
         src="https://images.unsplash.com/photo-1487528278747-ba99ed528ebc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
         class="card-img-top" alt="...">
@@ -42,17 +42,7 @@
       </div>
     </div>
 
-    <div class="card" style="width: 30rem;">
-      <img
-        src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1188&q=80"
-        class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">GIT REPOSITORY</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <a href="https://github.com/MadhukeshSingh/CampusPlacementPrediction" class="btn btn-primary">See the code</a>
-      </div>
-    </div>
+   
 
   </div>
   <form action="{{ url_for('predict')}}" method="post">
@@ -134,7 +124,7 @@
       </select>
     </div>
     <div class="col-md-4">
-      <label for="etest_p" class="form-label">etest_p</label>
+      <label for="etest_p" class="form-label">etest_percentage</label>
       <input type="number" name="etest_p"  min="0" max="100" class="form-control" id="etest_p" required />
     </div>
     
@@ -142,5 +132,20 @@
       <button type="submit" class="btn btn-primary">predict</button>
     </div>
   </form>
-{{prediction_text}}
-</span>
+<div class="container predictor">
+  {{prediction_text}} 
+</div>
+
+<div class="container footer">
+  <footer>
+    <div class="card" style="width: 30rem;">
+      <div class="card-body">
+        <h5 class="card-title">GIT REPOSITORY</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="https://github.com/MadhukeshSingh/CampusPlacementPrediction" class="btn btn-primary">See the code</a>
+      </div>
+    </div>
+  </footer>
+  </span>
+</div>
